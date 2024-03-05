@@ -1,0 +1,12 @@
+# Goal
+trajectory_msgs::MultiDOFJointTrajectory trajectory
+---
+# Result
+float64 final_position_error
+float64 final_orientation_error
+---
+# Feedback
+float64 time_to_completion
+float64 position_tracking_error
+float64 orientation_tracking_error
+float64 manipulability

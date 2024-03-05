@@ -1,0 +1,10 @@
+# Goal
+string frame_name
+---
+# Result
+???
+---
+# Feedback
+float64 position_tracking_error
+float64 orientation_tracking_error
+float64 manipulability

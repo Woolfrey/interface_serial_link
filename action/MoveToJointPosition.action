@@ -1,0 +1,10 @@
+# Goal
+float64[] desired_position
+float64 time_from_start
+---
+# Result
+float64[] final_position_error
+---
+# Feedback
+float64 time_to_completion
+float64[] position_tracking_error
