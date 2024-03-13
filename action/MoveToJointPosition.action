@@ -1,10 +1,11 @@
 # Goal
-float64[] desired_position
-float64 time_from_start
+float64[] position
+float64   duration
 ---
 # Result
-float64[] final_position_error
+float64[] tracking_error_mean
+float64[] tracking_error_variance
 ---
 # Feedback
-float64 time_to_completion
-float64[] position_tracking_error
+float64   time_to_completion
+float64[] tracking_error
