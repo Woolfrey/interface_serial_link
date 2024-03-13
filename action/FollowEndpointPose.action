@@ -2,9 +2,13 @@
 string frame_name
 ---
 # Result
-???
+float64 position_error_mean
+float64 position_error_variance
+float64 orientation_error_mean
+float64 orientation_error_variance
 ---
 # Feedback
-float64 position_tracking_error
-float64 orientation_tracking_error
+float64 position_error
+float64 orientation_error
 float64 manipulability
+float64 time_to_completion
