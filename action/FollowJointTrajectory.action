@@ -1,9 +1,0 @@
-# Goal
-trajectory_msgs::msg::JointTrajectory joint_trajectory
----
-# Result
-float64[] final_position_error
----
-# Feedback
-float64 time_to_completion
-float64[] position_tracking_error

@@ -1,0 +1,10 @@
+# Goal
+trajectory_msgs::msg::JointTrajectory trajectory
+---
+# Result
+float64[] position_error_mean
+float64[] position_error_variance
+---
+# Feedback
+float64   time_to_completion
+float64[] position_error
