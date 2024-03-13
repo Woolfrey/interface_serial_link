@@ -1,13 +1,13 @@
 # Goal
-geometry_msgs::Transform desired_pose
-float54 time_from_start
+float64 duration
+geometry_msgs::Transform pose
 ---
 # Result
-float64 final_position_error
-float64 final_orientation_error
+float64 position_error_mean
+float64 position_error_variance
 ---
 # Feedback
-float64 position_tracking_error
-float64 orientation_tracking_error
+float64 position_error
+float64 orientation_error
 float64 time_to_completion
 float64 manipulability
