@@ -1,0 +1,15 @@
+# Perform feedback control on a joint trajectory
+
+################## GOAL ####################
+JointTrajectoryPoint[] points               # Support points that define the trajectory
+float64[] tolerances                        # Maximum permissable tracking error on the joints
+int32 polynomial_order 3                    # Degrees of freedom in the interpolating polynomial
+---
+################ RESULT ####################
+Statistics[] position_error                 # Contains information on performance
+string message                              # Information for the client
+---
+################ FEEDBACK ##################
+std_msgs/Header header                      # Contains timestamp
+JointState actual                           # Actual state measured from joint sensors
+JointState desired                          # Desired state from trajectory generator

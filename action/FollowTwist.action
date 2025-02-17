@@ -1,0 +1,15 @@
+# Follow a specified endpoint twist (linear & angular velocity)
+
+################## GOAL ####################
+string topic_name                           # Published topic that contains the twist
+float64 timeout 1.0                         # Time to wait before stopping the robot
+---
+################ RESULT ####################
+Statistics linear_error                     # Contains information on mean, variance, min, max
+Statistics angular_error                    # Contains information on mean, variance, min, max
+string message                              # Information for the client
+---
+################ FEEDBACK ##################
+std_msgs/Header header                      # Time of publication, reference frame
+geometry_msgs/Twist actual                  # Calculated from the forward kinematics
+geometry_msgs/Twist desired                 # Taken from the published topic

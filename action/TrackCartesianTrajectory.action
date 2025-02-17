@@ -1,0 +1,17 @@
+# Perform feedback control on a Cartesian trajectory
+
+################## GOAL ####################
+CartesianTrajectoryPoint[] points           # Support points that define the trajectory
+float64 position_tolerance 0.01             # Absolute permissable position error (m)
+float64 orientation_tolernace 0.2           # Absolute permissable orientation error (rad)
+
+---
+################ RESULT ####################
+Statistics position_error                   # Contains information on mean, variance, min, max
+Statistics orientation_error                # Contains information on mean, variance, min, max
+string message                              # Information for the client
+---
+################ FEEDBACK ##################
+std_msgs/Header header                      # Time of publication, reference frame
+CartesianState actual                       # Computed value from the forward kinematics
+CartesianState desired                      # Value from the trajectory
