@@ -15,25 +15,22 @@ find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 ####################################################################################################
-#                                          GENERATE MSG                                            #
+#                                      GENERATE INTERFACES                                         #
 ####################################################################################################
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+  "action/FollowTransform.action"
+  "action/FollowTwist.action"
+  "action/TrackCartesianTrajectory.action"
+  "action/TrackJointTrajectory.action"
   "msg/CartesianState.msg"
-  DEPENDENCIES geometry_msgs
-)
-
-rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/CartesianTrajectoryPoint.msg"
-  DEPENDENCIES std_msgs geometry_msgs
-)
-
-rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/JointCommand.msg"
   "msg/JointState.msg"
   "msg/JointTrajectoryPoint.msg"
   "msg/Statistics.msg"
-  DEPENDENCIES std_msgs
+  DEPENDENCIES std_msgs geometry_msgs
 )
+
 
 ament_package()
