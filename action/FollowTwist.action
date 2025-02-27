@@ -2,6 +2,8 @@
 
 ################## GOAL ####################
 string topic_name                           # Published topic that contains the twist
+float64 linear_tolerance 0.01               # Absolute permissable linear velocity error (m/s)
+float64 angular_tolerance 0.1               # Absolute permissable angular velocity error (rad/s)
 float64 timeout 1.0                         # Time to wait before stopping the robot
 ---
 ################ RESULT ####################
@@ -11,5 +13,6 @@ string message                              # Information for the client
 ---
 ################ FEEDBACK ##################
 std_msgs/Header header                      # Time of publication, reference frame
-geometry_msgs/Twist actual                  # Calculated from the forward kinematics
-geometry_msgs/Twist desired                 # Taken from the published topic
+geometry_msgs/TwistStamped actual           # Calculated from the forward kinematics
+geometry_msgs/TwistStamped desired          # Taken from the published topic
+float64 manipulability                      # Proximity to a singularity (0 == singular)
