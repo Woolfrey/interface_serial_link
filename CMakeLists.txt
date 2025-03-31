@@ -8,11 +8,17 @@ endif()
 ####################################################################################################
 #                                         DEPENDENCIES                                             #
 ####################################################################################################
+
+# ROS2 packages:
 find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+
+# Header files:
+include_directories(include)
 
 ####################################################################################################
 #                                      GENERATE INTERFACES                                         #
@@ -32,5 +38,24 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   DEPENDENCIES std_msgs geometry_msgs
 )
 
+####################################################################################################
+#                                             EXECUTABLES                                          #
+####################################################################################################
+
+add_executable(joy_twist_mapper src/nodes/joy_twist_mapper_exec.cpp
+                                src/joy_twist_mapper.cpp)
+                                         
+ament_target_dependencies(joy_twist_mapper "ament_cmake"
+                                           "geometry_msgs"
+                                           "rclcpp"
+                                           "sensor_msgs")
+ 
+####################################################################################################
+#                                       INSTALLATION INSTRUCTIONS                                  #
+####################################################################################################      
+                                       
+install(TARGETS joy_twist_mapper
+        DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()
