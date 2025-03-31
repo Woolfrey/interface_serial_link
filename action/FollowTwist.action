@@ -4,7 +4,7 @@
 string topic_name                           # Published topic that contains the twist
 float64 linear_tolerance 0.01               # Absolute permissable linear velocity error (m/s)
 float64 angular_tolerance 0.1               # Absolute permissable angular velocity error (rad/s)
-float64 timeout 1.0                         # Time to wait before stopping the robot
+float64 timeout 0.1                         # Time to wait (seconds) before stopping the robot
 ---
 ################ RESULT ####################
 Statistics linear_error                     # Contains information on mean, variance, min, max
