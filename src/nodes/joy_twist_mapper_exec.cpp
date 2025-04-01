@@ -1,5 +1,5 @@
 /**
- * @file    joy_twist_mapper_node.cpp
+ * @file    joy_twist_mapper_exec.cpp
  * @author  Jon Woolfrey
  * @email   jonathan.woolfrey@gmail.com
  * @date    March 2025

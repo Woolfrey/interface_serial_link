@@ -27,8 +27,9 @@ namespace serial_link_interfaces {
  */
 struct JoyMapping
 {
-    std::vector<long int> axes    = {0, 0};                                                         ///< Which axes map to a twist field (-1, 0, or 1)
-    std::vector<long int> buttons = {0, 0};                                                         ///< Which buttons map to a twist field (-1, 0, or 1)
+    int axis = -1;
+    int button_positive = -1;
+    int button_negative = -1;
 };                                                                                                  // Semicolon needed after struct declaration
 
 /**
@@ -57,6 +58,8 @@ class JoyTwistMapper : public rclcpp::Node
         
         double _maxAngularAcceleration = 1.0;                                                       ///< Ramps angular velocity up/down (rad/s/s)
 
+        geometry_msgs::msg::Twist _oldTwist;
+        
         rclcpp::TimerBase::SharedPtr _timer;                                                        ///< Used to regulate the publisher
         
         rclcpp::Time _lastInputTime;                                                                ///< Records when last sensor_msgs::msg::Joy was received
@@ -69,11 +72,7 @@ class JoyTwistMapper : public rclcpp::Node
         
         std::array<JoyMapping, 6> _defaultMap;                                                      ///< Defines conversion from joystick input to twist vector
         
-        std::array<JoyMapping, 6> _alternateMap;                                                    ///< Alternate conversion from joystick to twist
-        
-        std::string _frameName = "world";                                                           ///< Reference frame for the twist vector
-        
-        std::vector<int> _switchButtons;                                                            ///< Defines which combination of buttons 
+        std::string _frameName = "world";                                                           ///< Reference frame for the twist vector   
         
         unsigned int _frequency = 50;                                                               ///< Default frequency for sending twist commands
                 
