@@ -29,8 +29,9 @@ InteractiveMarker::InteractiveMarker(const std::string &nodeName,
     _transformBroadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(this);
     
     _transform.header.frame_id = this->declare_parameter("interactive_marker.frame_id", "world");
+    _transform.child_frame_id  = this->declare_parameter("interactive_marker.name", "desired");
     
-    _transform.child_frame_id = this->declare_parameter("interactive_marker.name", "desired");
+    _timer = this->create_wall_timer(std::chrono::milliseconds(10), std::bind(&InteractiveMarker::broadcast_transform, this));
     
     // Create
     visualization_msgs::msg::InteractiveMarker interactiveMarker;
@@ -43,12 +44,12 @@ InteractiveMarker::InteractiveMarker(const std::string &nodeName,
     visualization_msgs::msg::Marker marker;
     marker.type = visualization_msgs::msg::Marker::CUBE;
     
-    std::vector<double> scale = this->declare_parameter<std::vector<double>>("interactive_marker.marker.scale", std::vector<double>{0.1, 0.1, 0.1});
+    std::vector<double> scale = this->declare_parameter<std::vector<double>>("interactive_marker.marker.scale", std::vector<double>{0.05, 0.05, 0.05});
     marker.scale.x = scale[0];
     marker.scale.y = scale[1];
     marker.scale.z = scale[2];
     
-    std::vector<double> rgba =this->declare_parameter<std::vector<double>>("interactive_marker.marker.color", std::vector<double>{0.0, 1.0, 0.0, 1.0});
+    std::vector<double> rgba =this->declare_parameter<std::vector<double>>("interactive_marker.marker.color", std::vector<double>{0.1, 0.1, 0.1, 1.0});
     marker.color.r = rgba[0];
     marker.color.g = rgba[1];
     marker.color.b = rgba[2];
@@ -77,7 +78,7 @@ InteractiveMarker::InteractiveMarker(const std::string &nodeName,
             interactiveMarker.controls.push_back(control);
         }
     }
-    
+        
     // Insert into server with feedback callback
     _server->insert(interactiveMarker, std::bind(&InteractiveMarker::process_feedback, this, std::placeholders::_1));
     _server->applyChanges();
@@ -92,14 +93,19 @@ InteractiveMarker::InteractiveMarker(const std::string &nodeName,
 void
 InteractiveMarker::process_feedback(const visualization_msgs::msg::InteractiveMarkerFeedback::ConstSharedPtr &feedback)
 {
-
-    _transform.header.stamp = this->get_clock()->now();
     _transform.transform.translation.x = feedback->pose.position.x;
     _transform.transform.translation.y = feedback->pose.position.y;
     _transform.transform.translation.z = feedback->pose.position.z;
+    _transform.transform.rotation      = feedback->pose.orientation;
+}
 
-    _transform.transform.rotation = feedback->pose.orientation;
-
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+ //                                    Publish transform continually                               //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+void
+InteractiveMarker::broadcast_transform()
+{
+    _transform.header.stamp = this->get_clock()->now();
     _transformBroadcaster->sendTransform(_transform);
 }
 
