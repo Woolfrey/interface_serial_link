@@ -1,10 +1,10 @@
-# Follow a tf2 transform object with the robot endpoint
+# Follow a transform with the endpoint of a robot arm
 
 ################## GOAL ####################
-geometry_msgs/TransformStamped transform    # What to follow
-float64 position_tolerance 0.05             # Maximum permissable error on position error (m)
-float64 orientation_error 0.5               # Maximum permissable error on orienation (rad)
-float64 timeout 5.0                         # Time to wait for transform to appear
+string frame_id                             # Name of the transform we want to track
+float64 position_tolerance 0.1              # Maximum permissable error on position error (m)
+float64 orientation_tolerance 0.5           # Maximum permissable error on orienation (rad)
+float64 timeout 0.5                         # Time to wait for transform to appear
 ---
 ################ RESULT ####################
 Statistics position_error                   # Contains information on mean, variance, min, max
@@ -15,3 +15,4 @@ string message                              # Information for the client
 std_msgs/Header header                      # Time of publication, reference frame
 CartesianState actual                       # Computed value from the forward kinematics
 CartesianState desired                      # Value from the trajectory
+float64 manipulability                      # Proximity to a singularity
