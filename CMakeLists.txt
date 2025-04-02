@@ -12,10 +12,13 @@ endif()
 # ROS2 packages:
 find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(interactive_markers REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(visualization_msgs REQUIRED)
 
 # Header files:
 include_directories(include)
@@ -42,7 +45,19 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 #                                             EXECUTABLES                                          #
 ####################################################################################################
 
-add_executable(joy_twist_mapper src/nodes/joy_twist_mapper_exec.cpp
+# Interactive marker
+add_executable(interactive_marker src/nodes/interactive_marker_node.cpp
+                                  src/interactive_marker.cpp)
+                                         
+ament_target_dependencies(interactive_marker "ament_cmake"
+                                             "geometry_msgs"
+                                             "interactive_markers"
+                                             "rclcpp"
+                                             "tf2_ros"
+                                             "visualization_msgs")
+
+# Joy/Twist mapper
+add_executable(joy_twist_mapper src/nodes/joy_twist_mapper_node.cpp
                                 src/joy_twist_mapper.cpp)
                                          
 ament_target_dependencies(joy_twist_mapper "ament_cmake"
@@ -54,7 +69,8 @@ ament_target_dependencies(joy_twist_mapper "ament_cmake"
 #                                       INSTALLATION INSTRUCTIONS                                  #
 ####################################################################################################      
                                        
-install(TARGETS joy_twist_mapper
+install(TARGETS interactive_marker
+                joy_twist_mapper
         DESTINATION lib/${PROJECT_NAME}
 )
 
