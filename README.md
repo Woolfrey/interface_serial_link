@@ -11,6 +11,8 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - [Requirements](#clipboard-requirements)
 - [Installation](#floppy_disk-installation)
 - [Usage](#wrench-usage)
+- [Messages](#incoming_envelope-message)
+- [Actions](#cartwheeling-actions)
 - [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
 - [License](#scroll-license)
@@ -105,11 +107,19 @@ and list them as dependencies in the `package.xml` file:
 
 For more details on how to implement them, check out my:
 - [ROS2 Tutorials](https://github.com/Woolfrey/tutorial_ros2) on how to create  subscribers & publishers, services, and action servers.
-- [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) package,
-- [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) package, and
+- [Serial link action server](https://github.com/Woolfrey/server_serial_link) package,
+- [Serial link action client](https://github.com/Woolfrey/client_serial_link) package, and
 - [Kuka iiwa14 ROS2 velocity control](https://github.com/Woolfrey/control_kuka_velocity) package which implements both of these.
 
 [:top: Back to Top.](#jigsaw-serial-link-interfaces)
+
+## :incoming_envelope: Messages
+
+To do.
+
+## :cartwheeling: Actions
+
+To do.
 
 ## :package: Release Notes - v1.0.0 (April 2025)
 
