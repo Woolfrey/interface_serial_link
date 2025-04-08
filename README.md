@@ -1,6 +1,6 @@
 # :jigsaw: Serial Link Interfaces
 
-This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. The purpose is to establish standardised communication protocols between an action server (which manages the robot control) and an action client (which handles the high-level task planning). It was created to be used alongside the [Serial link action server](https://github.com/Woolfrey/server_serial_link) and [Serial link action client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
+This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. The purpose is to establish standardised communication protocols between an action server (which manages the robot control) and an action client (which handles the high-level task planning). It was created to be used alongside the [serial link action server](https://github.com/Woolfrey/server_serial_link) and [serial link action client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
 
 #### :sparkles: Features:
 - Message types for defining both joint, and Cartesian trajectories for robot control.
