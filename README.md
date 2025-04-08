@@ -76,7 +76,7 @@ source ./install/setup.bash
 ros2 interface list
 ```
 
-Scroll down and you should see the following:
+You should see the following:
 
 <p align="center">
   <img src="doc/ros2_interface_list.png" width="700" height="auto"/>
