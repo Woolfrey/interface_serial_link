@@ -29,22 +29,31 @@ class InteractiveMarker : public rclcpp::Node
          * @brief Constructor
          * @param nodeName The name that will be seen over the ROS2 network
          */
-        InteractiveMarker(const std::string &nodeName = "interactive_marker",
+        InteractiveMarker(const std::string &nodeName   = "interactive_marker",
                           const std::string &serverName = "interactive_marker_server");
 
     private:
     
-        geometry_msgs::msg::TransformStamped _transform;                                            
+        rclcpp::TimerBase::SharedPtr _timer;                                                        ///< Regulates publication of transform
+    
+        geometry_msgs::msg::TransformStamped _transform;                                            ///< Store changes from RViz                   
         
-        std::shared_ptr<interactive_markers::InteractiveMarkerServer> _server;
+        std::shared_ptr<interactive_markers::InteractiveMarkerServer> _server;                      ///< Gets latest marker pose
         
         std::shared_ptr<tf2_ros::TransformBroadcaster> _transformBroadcaster;                       ///< Responsible for publishing the latest transform
 
         /**
-         * @brief Callback method.
+         * @brief Callback method for the interactive marker server. Updates transform when RViz changes.
+         * @param feedback Object containing latest pose of marker from RViz.
          */
         void
         process_feedback(const visualization_msgs::msg::InteractiveMarkerFeedback::ConstSharedPtr &feedback);
+        
+        /**
+         * @brief Method bound to the timer. Publishes the desired transform to ROS2.
+         */
+        void
+        broadcast_transform();
 };
 
 } // namespace
