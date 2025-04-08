@@ -1,6 +1,6 @@
 # :jigsaw: Serial Link Interfaces
 
-This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. It was created to be used alongside the [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) and [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
+This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. The purpose is to establish standardised communication protocols between an action server (which manages the robot control) and an action client (which handles the high-level task planning). It was created to be used alongside the [Serial link action server](https://github.com/Woolfrey/server_serial_link) and [Serial link action client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
 
 #### :sparkles: Features:
 - Message types for defining both joint, and Cartesian trajectories for robot control.
@@ -11,7 +11,7 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - [Requirements](#clipboard-requirements)
 - [Installation](#floppy_disk-installation)
 - [Usage](#wrench-usage)
-- [Messages](#incoming_envelope-message)
+- [Messages](#incoming_envelope-messages)
 - [Actions](#cartwheeling-actions)
 - [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
@@ -111,15 +111,46 @@ For more details on how to implement them, check out my:
 - [Serial link action client](https://github.com/Woolfrey/client_serial_link) package, and
 - [Kuka iiwa14 ROS2 velocity control](https://github.com/Woolfrey/control_kuka_velocity) package which implements both of these.
 
+After installation, you can find out the details of any `msg`, `srv`, or `action` using, for example:
+```
+ros2 interface showal_link_interfaces/msg/Statistics
+```
+which brings up the fields:
+```
+float64 mean 0.0                        # Expected value (average)
+float64 min  0.0                        # Lowest observed value
+float64 max  0.0                        # Largest observed value
+float64 variance 0.0                    # Average squared distance from mean
+```
+You could also just inspect the code :eyes:
+
+Below are lists of `msg` and `action` files and their intended usage.
+
 [:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :incoming_envelope: Messages
 
-To do.
+| Message | Purpose |
+|---------|---------|
+| CartesianState | The current pose, velocity, and acceleration for the endpoint of a robot arm. |
+| CartesianTrajectoryPoint | A series of poses & times from which a CartesianTrajectory is constructed. |
+| JointCommand | An array of control inputs for the joints on a robot; position, velocity, or torque. |
+| JointState | The position, velocity, and acceleration for the joints of a robot (either desired, or actual). |
+| JointTrajectoryPoint | A series of joint states & times from which a joint trajectory is constructed. |
+| Statistics | Summarises the control performance of an action with mean, min, max, and variance. | 
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :cartwheeling: Actions
 
-To do.
+| Action | Purpose |
+|---------|---------|
+| FollowTransform | Tells the action server to listen to a `tf2::Transform` to make the endpoint of a robot arm follow it in real-time. |
+| FollowTwist | Tells the action server the name of a topic for a `geometry_msgs::msg::TwistStamped` to control the endpoint of a robot in real-time. |
+| TrackCartesianTrajectory | Given an array of `CartesianTrajectoryPoint`, create a Cartesian trajectory and perform feedback control to follow it with the endpoint of a robot arm. |
+| TrackJointTrajectory | Given an array of `JointTrajectoryPoint`, create a (joint) trajectory and perform feedback control to follow it. |
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :package: Release Notes - v1.0.0 (April 2025)
 
