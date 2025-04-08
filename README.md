@@ -8,13 +8,21 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - Action definitions for real-time feedback control.
 
 #### :compass: Navigation
-- [Installation](#clipboard-installation)
+- [Requirements](#clipboard-requirements)
+- [Installation](#floppy_disk-installation)
 - [Usage](#wrench-usage)
 - [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
 - [License](#scroll-license)
 
-## :clipboard: Installation
+## :clipboard: Requirements
+
+I created, compiled, and tested this code using:
+
+- [Ubuntu 22.04](https://ubuntu.com/blog/tag/22-04-lts), and
+- [ROS2 Humble](https://docs.ros.org/en/humble/index.html).
+
+## :floppy_disk: Installation
 
 Your directory structure should end up looking something like this:
 ```
@@ -71,7 +79,7 @@ ros2 interface list
 Scroll down and you should see the following:
 
 <p align="center">
-  <img src="doc/ros2_interface_list.png" width="600" height="auto"/>
+  <img src="doc/ros2_interface_list.png" width="700" height="auto"/>
 </p>
 
 [:top: Back to Top.](#electric_plug-serial-link-interfaces)
