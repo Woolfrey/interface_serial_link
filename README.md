@@ -103,10 +103,11 @@ and list them as dependencies in the `package.xml` file:
 <exec_depend>serial_link_interfaces</exec_depend>
 ```
 
-For more details on how to implement them, check out:
-- My [ROS2 Tutorials](https://github.com/Woolfrey/tutorial_ros2) on how to create  subscribers & publishers, services, and action servers.
-- My [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) package, and
-- My [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) packge.
+For more details on how to implement them, check out my:
+- [ROS2 Tutorials](https://github.com/Woolfrey/tutorial_ros2) on how to create  subscribers & publishers, services, and action servers.
+- [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) package,
+- [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) package, and
+- [Kuka iiwa14 ROS2 velocity control](https://github.com/Woolfrey/control_kuka_velocity) package which implements both of these.
 
 [:top: Back to Top.](#electric_plug-serial-link-interfaces)
 
