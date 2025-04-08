@@ -47,6 +47,9 @@ ros2_workspace/
 git clone https://github.com/Woolfrey/interface_serial_link.git
 ```
 
+> [!NOTE]
+> The repository name is `interface_serial_link`, but the project name in the CMakeLists.txt and package.xml file is `serial_link_interfaces`. I did this deliberately so it's easier to sort through my repositories on github.
+
 2. Navigate back to the root `<your_workspace>` and install:
 
 ```
