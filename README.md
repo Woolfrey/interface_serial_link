@@ -1,4 +1,4 @@
-# :electric_plug: Serial Link Interfaces
+# :jigsaw: Serial Link Interfaces
 
 This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. It was created to be used alongside the [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) and [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
 
@@ -82,7 +82,7 @@ Scroll down and you should see the following:
   <img src="doc/ros2_interface_list.png" width="700" height="auto"/>
 </p>
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :wrench: Usage
 
@@ -109,7 +109,7 @@ For more details on how to implement them, check out my:
 - [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) package, and
 - [Kuka iiwa14 ROS2 velocity control](https://github.com/Woolfrey/control_kuka_velocity) package which implements both of these.
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :package: Release Notes - v1.0.0 (April 2025)
 
@@ -126,7 +126,7 @@ For more details on how to implement them, check out my:
   - TrackCartesianTrajectory
   - TrackJointTrajectory
  
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :handshake: Contributing
 
@@ -134,10 +134,10 @@ Contributions are always welcome. Feel free to fork the repository, make changes
 
 You can also raise an issue asking for new features.
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :scroll: License
 
 This software package is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://choosealicense.com/licenses/gpl-3.0/). You are free to use, modify, and distribute this package, provided that any modified versions also comply with the GPL-3.0 license. All modified versions must make the source code available and be licensed under GPL-3.0. The license also ensures that the software remains free and prohibits the use of proprietary restrictions such as Digital Rights Management (DRM) and patent claims. For more details, please refer to the [full license text](LICENSE).
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
