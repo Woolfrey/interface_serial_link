@@ -6,6 +6,7 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - Message types for defining both joint, and Cartesian trajectories for robot control.
 - Statistics messages for summarising robot performance.
 - Action definitions for real-time feedback control.
+- Nodes for manual control of a robot end-effector.
 
 #### :compass: Navigation
 - [Requirements](#clipboard-requirements)
