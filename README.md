@@ -1,6 +1,6 @@
-# :electric_plug: Serial Link Interfaces
+# :jigsaw: Serial Link Interfaces
 
-This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. It was created to be used alongside the [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) and [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
+This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. The purpose is to establish standardised communication protocols between an action server (which manages the robot control) and an action client (which handles the high-level task planning). It was created to be used alongside the [serial link action server](https://github.com/Woolfrey/server_serial_link) and [serial link action client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
 
 #### :sparkles: Features:
 - Message types for defining both joint, and Cartesian trajectories for robot control.
@@ -8,13 +8,23 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - Action definitions for real-time feedback control.
 
 #### :compass: Navigation
-- [Installation](#clipboard-installation)
+- [Requirements](#clipboard-requirements)
+- [Installation](#floppy_disk-installation)
 - [Usage](#wrench-usage)
+- [Messages](#incoming_envelope-messages)
+- [Actions](#cartwheeling-actions)
 - [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
 - [License](#scroll-license)
 
-## :clipboard: Installation
+## :clipboard: Requirements
+
+I created, compiled, and tested this code using:
+
+- [Ubuntu 22.04](https://ubuntu.com/blog/tag/22-04-lts), and
+- [ROS2 Humble](https://docs.ros.org/en/humble/index.html).
+
+## :floppy_disk: Installation
 
 Your directory structure should end up looking something like this:
 ```
@@ -47,6 +57,9 @@ ros2_workspace/
 git clone https://github.com/Woolfrey/interface_serial_link.git
 ```
 
+> [!NOTE]
+> The repository name is `interface_serial_link`, but the project name in the CMakeLists.txt and package.xml file is `serial_link_interfaces`. I did this deliberately so it's easier to sort through my repositories on github.
+
 2. Navigate back to the root `<your_workspace>` and install:
 
 ```
@@ -65,13 +78,13 @@ source ./install/setup.bash
 ros2 interface list
 ```
 
-Scroll down and you should see the following:
+You should see the following:
 
 <p align="center">
-  <img src="doc/ros2_interface_list.png" width="600" height="auto"/>
+  <img src="doc/ros2_interface_list.png" width="700" height="auto"/>
 </p>
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :wrench: Usage
 
@@ -92,12 +105,52 @@ and list them as dependencies in the `package.xml` file:
 <exec_depend>serial_link_interfaces</exec_depend>
 ```
 
-For more details on how to implement them, check out:
-- My [ROS2 Tutorials](https://github.com/Woolfrey/tutorial_ros2) on how to create  subscribers & publishers, services, and action servers.
-- My [Serial Link Action Server](https://github.com/Woolfrey/server_serial_link) package, and
-- My [Serial Link Action Client](https://github.com/Woolfrey/client_serial_link) packge.
+For more details on how to implement them, check out my:
+- [ROS2 Tutorials](https://github.com/Woolfrey/tutorial_ros2) on how to create  subscribers & publishers, services, and action servers.
+- [Serial link action server](https://github.com/Woolfrey/server_serial_link) package,
+- [Serial link action client](https://github.com/Woolfrey/client_serial_link) package, and
+- [Kuka iiwa14 ROS2 velocity control](https://github.com/Woolfrey/control_kuka_velocity) package which implements both of these.
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+After installation, you can find out the details of any `msg`, `srv`, or `action` using, for example:
+```
+ros2 interface showal_link_interfaces/msg/Statistics
+```
+which brings up the fields:
+```
+float64 mean 0.0                        # Expected value (average)
+float64 min  0.0                        # Lowest observed value
+float64 max  0.0                        # Largest observed value
+float64 variance 0.0                    # Average squared distance from mean
+```
+You could also just inspect the code :eyes:
+
+Below are lists of `msg` and `action` files and their intended usage.
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
+
+## :incoming_envelope: Messages
+
+| Message | Purpose |
+|---------|---------|
+| CartesianState | The current pose, velocity, and acceleration for the endpoint of a robot arm. |
+| CartesianTrajectoryPoint | A series of poses & times from which a CartesianTrajectory is constructed. |
+| JointCommand | An array of control inputs for the joints on a robot; position, velocity, or torque. |
+| JointState | The position, velocity, and acceleration for the joints of a robot (either desired, or actual). |
+| JointTrajectoryPoint | A series of joint states & times from which a joint trajectory is constructed. |
+| Statistics | Summarises the control performance of an action with mean, min, max, and variance. | 
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
+
+## :cartwheeling: Actions
+
+| Action | Purpose |
+|---------|---------|
+| FollowTransform | Tells the action server to listen to a `tf2::Transform` to make the endpoint of a robot arm follow it in real-time. |
+| FollowTwist | Tells the action server the name of a topic for a `geometry_msgs::msg::TwistStamped` to control the endpoint of a robot in real-time. |
+| TrackCartesianTrajectory | Given an array of `CartesianTrajectoryPoint`, create a Cartesian trajectory and perform feedback control to follow it with the endpoint of a robot arm. |
+| TrackJointTrajectory | Given an array of `JointTrajectoryPoint`, create a (joint) trajectory and perform feedback control to follow it. |
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :package: Release Notes - v1.0.0 (April 2025)
 
@@ -114,7 +167,7 @@ For more details on how to implement them, check out:
   - TrackCartesianTrajectory
   - TrackJointTrajectory
  
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :handshake: Contributing
 
@@ -122,10 +175,10 @@ Contributions are always welcome. Feel free to fork the repository, make changes
 
 You can also raise an issue asking for new features.
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :scroll: License
 
 This software package is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://choosealicense.com/licenses/gpl-3.0/). You are free to use, modify, and distribute this package, provided that any modified versions also comply with the GPL-3.0 license. All modified versions must make the source code available and be licensed under GPL-3.0. The license also ensures that the software remains free and prohibits the use of proprietary restrictions such as Digital Rights Management (DRM) and patent claims. For more details, please refer to the [full license text](LICENSE).
 
-[:top: Back to Top.](#electric_plug-serial-link-interfaces)
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
