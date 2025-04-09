@@ -172,7 +172,7 @@ ros2 run rviz2 rviz2
 you can add the `TF` and `Interactive Marker` messages and you will be able to move it around with your mouse:
 
 <p align="center">
-    <img src="doc/interactive_marker.png" width="600" align="center"/>
+    <img src="doc/follow_transform.gif" width="600" align="center"/>
 </p>
 
 You can set the parameters by launching with a config file:
@@ -201,7 +201,7 @@ ros2 run serial_link_interfaces joy_twist_mapper
 to launch the node.
 
 <p align="center">
-    <img src="doc/joy_twist_mapper.png" width="600" height="auto"/>
+    <img src="doc/follow_twist.gif" width="600" height="auto"/>
 </p>
 
 Again, you can load a `.yaml` file when you run/launch the node:
