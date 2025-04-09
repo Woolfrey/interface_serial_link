@@ -13,6 +13,7 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - [Usage](#wrench-usage)
 - [Messages](#incoming_envelope-messages)
 - [Actions](#cartwheeling-actions)
+- [Nodes](#satellite-nodes)
 - [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
 - [License](#scroll-license)
@@ -152,20 +153,123 @@ Below are lists of `msg` and `action` files and their intended usage.
 
 [:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
+## :satellite: Nodes
+
+This package also has nodes that facilitate interaction with a robot.
+
+### Interactive Marker
+
+If you run:
+```
+ros2 run serial_link_interfaces interactive_marker
+```
+a node will launch that advertised a `tf2_ros::Transform`. You can use this for your robot to follow, as per the `FollowTransform` action.
+
+In another terminal, if you run:
+```
+ros2 run rviz2 rviz2
+```
+you can add the `TF` and `Interactive Marker` messages and you will be able to move it around with your mouse:
+
+<p align="center">
+    <img src="doc/interactive_marker.png" width="600" align="center"/>
+</p>
+
+You can set the parameters by launching with a config file:
+```
+/**:
+  ros__parameters:
+    interactive_marker:
+      frame_id: "world"
+      name: "desired"
+      description: "Drag to move."
+      scale: 0.2
+
+      marker:
+        scale: [0.05, 0.05, 0.05]
+        color: [0.1, 0.1, 0.1, 1.0]
+```
+
+### Joy-Twist Mapper
+
+This nodes converts a `sensor_msgs::msg::Joy` topic to a `geometry_msgs::msg::TwistStamped` message. This is useful for the `FollowTwist` action so you can manually control the robot with a gamepad or joystick :joystick:.
+
+Use:
+```
+ros2 run serial_link_interfaces joy_twist_mapper
+```
+to launch the node.
+
+<p align="center">
+    <img src="doc/joy_twist_mapper.png" width="600" height="auto"/>
+</p>
+
+Again, you can load a `.yaml` file when you run/launch the node:
+
+```
+/**:
+  ros__parameters:
+    joy_twist_map:
+      frame_name: "world"
+      max_angular_acceleration: 0.25
+      max_angular_velocity: 0.1
+      max_linear_acceleration: 1.0
+      max_linear_velocity: 0.2
+      timeout: 0.5
+
+      subscription_name: "joy"
+      publisher_name: "twist_command"
+      publisher_frequency: 20
+
+      default:
+        axis:
+          linear_x: -1
+          linear_y: -1
+          linear_z: -1
+          angular_x: -1
+          angular_y: -1
+          angular_z: -1
+
+        button:
+          positive:
+            linear_x: -1
+            linear_y: -1
+            linear_z: -1
+            angular_x: -1
+            angular_y: -1
+            angular_z: -1
+          negative:
+            linear_x: -1
+            linear_y: -1
+            linear_z: -1
+            angular_x: -1
+            angular_y: -1
+            angular_z: -1
+```
+
+Just change the `-1` to whatever axis or button index you want to control.
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
+
 ## :package: Release Notes - v1.0.0 (April 2025)
 
-- Messages:
+Messages:
   - CartesianState
   - CartesianTrajectoryPoint
   - JointCommand
   - JointState
   - JointTrajectoryPoint
   - Statistics
-- Actions
+
+Actions
   - FollowTransform
   - FollowTwist
   - TrackCartesianTrajectory
   - TrackJointTrajectory
+
+Nodes:
+  - interactive_marker
+  - joy_twist_mapper
  
 [:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
