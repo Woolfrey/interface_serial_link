@@ -17,6 +17,7 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - [Nodes](#satellite-nodes)
 - [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
+- [Citing this Repository](#bookmark_tabs-citing-this-repository)
 - [License](#scroll-license)
 
 ## :clipboard: Requirements
@@ -176,7 +177,7 @@ you can add the `TF` and `Interactive Marker` messages and you will be able to m
     <img src="doc/follow_transform.gif" width="600" align="center"/>
 </p>
 
-You can set the parameters by launching with a config file:
+You can set the parameters by launching with a YAML file:
 ```
 /**:
   ros__parameters:
@@ -193,7 +194,7 @@ You can set the parameters by launching with a config file:
 
 ### Joy-Twist Mapper
 
-This nodes converts a `sensor_msgs::msg::Joy` topic to a `geometry_msgs::msg::TwistStamped` message. This is useful for the `FollowTwist` action so you can manually control the robot with a gamepad or joystick :joystick:.
+This node converts a `sensor_msgs::msg::Joy` topic to a `geometry_msgs::msg::TwistStamped` message. This is useful for the `FollowTwist` action so you can manually control the robot with a gamepad or joystick :joystick:.
 
 Use:
 ```
@@ -205,7 +206,7 @@ to launch the node.
     <img src="doc/follow_twist.gif" width="600" height="auto"/>
 </p>
 
-Again, you can load a `.yaml` file when you run/launch the node:
+Again, you can load a YAML file when you run/launch the node:
 
 ```
 /**:
@@ -276,9 +277,34 @@ Nodes:
 
 ## :handshake: Contributing
 
-Contributions are always welcome. Feel free to fork the repository, make changes, and issue a pull request.
+Contributions to this repositore are welcome! Feel free to:
+1. Fork the repository,
+2. Implement your changes / improvements, then
+3. Issue a pull request.
 
-You can also raise an issue asking for new features.
+If you're looking for ideas, you can always check the [Issues tab](https://github.com/Woolfrey/interface_serial_link/issues) for those with :raising_hand: [OPEN]. These are things I'd like to implement, but don't have time for. It'd be much appreciated, and you'll be tagged as a contributor :sunglasses:
+
+[:top: Back to Top.](#jigsaw-serial-link-interfaces)
+
+## :bookmark_tabs: Citing this Repository
+
+If you find this code useful, spread the word by acknowledging it. Click on `Cite this repository` under the **About** section in the top-right corner of this page :arrow_upper_right:.
+
+Here's a BibTeX reference:
+```
+@software{woolfrey_serial_link_interfaces_2025,
+     author  = {Woolfrey, Jon},
+     month   = apr,
+     title   = {{S}erial {L}ink {I}nterfaces},
+     url     = {https://github.com/Woolfrey/interface_serial_link},
+     version = {1.0.0},
+     year    = {2025}
+}
+```
+Here's the automatically generated APA format:
+```
+Woolfrey, J. (2025). Serial Link Interfaces (Version 1.0.0). Retrieved from https://github.com/Woolfrey/interface_serial_link
+```
 
 [:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
