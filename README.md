@@ -66,7 +66,7 @@ git clone https://github.com/Woolfrey/interface_serial_link.git
 2. Navigate back to the root `<your_workspace>` and install:
 
 ```
-colcon build --packages-select --serial_link_interfaces
+colcon build --packages-select serial_link_interfaces
 ```
 
 3. Source the changes (if you haven't modified your `.bashrc` file):
