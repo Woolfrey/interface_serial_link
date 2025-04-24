@@ -80,8 +80,8 @@ InteractiveMarker::InteractiveMarker(const std::string &nodeName,
     }
     
     // Set initial pose
-    std::vector<double> position = this->declare_parameter<std::vector<double>>("interactive_marker.initial_position", {0.0, 0.0, 0.0});
-    std::vector<double> orientation = this->declare_parameter<std::vector<double>>("interactive_marker.initial_orientation", {0.0, 0.0, 0.0, 1.0});
+    std::vector<double> position = this->declare_parameter<std::vector<double>>("interactive_marker.initial_position", {0.5, 0.0, 0.5});
+    std::vector<double> orientation = this->declare_parameter<std::vector<double>>("interactive_marker.initial_orientation", {0.0, 0.7071, 0.0, 0.7071});
 
     interactiveMarker.pose.position.x = position[0];
     interactiveMarker.pose.position.y = position[1];
