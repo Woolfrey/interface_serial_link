@@ -78,6 +78,18 @@ InteractiveMarker::InteractiveMarker(const std::string &nodeName,
             interactiveMarker.controls.push_back(control);
         }
     }
+    
+    // Set initial pose
+    std::vector<double> position = this->declare_parameter<std::vector<double>>("interactive_marker.initial_position", {0.5, 0.0, 0.5});
+    std::vector<double> orientation = this->declare_parameter<std::vector<double>>("interactive_marker.initial_orientation", {0.0, 0.7071, 0.0, 0.7071});
+
+    interactiveMarker.pose.position.x = position[0];
+    interactiveMarker.pose.position.y = position[1];
+    interactiveMarker.pose.position.z = position[2];
+    interactiveMarker.pose.orientation.x = orientation[0];
+    interactiveMarker.pose.orientation.y = orientation[1];
+    interactiveMarker.pose.orientation.z = orientation[2];
+    interactiveMarker.pose.orientation.w = orientation[3];
         
     // Insert into server with feedback callback
     _server->insert(interactiveMarker, std::bind(&InteractiveMarker::process_feedback, this, std::placeholders::_1));
