@@ -1,0 +1,14 @@
+# Hold a given desired joint configuration indefinitely.
+
+################## GOAL ####################
+float64[] configuration                     # The desired joint positions to maintain
+float64[] tolerances                        # Maximum permissable error for each joint
+---
+################ RESULT ####################
+Statistics[] position_error                 # Contains information on mean, variance, min, max
+string message                              # Information for the client
+---
+################ FEEDBACK ##################
+std_msgs/Header header                      # Time of publication, reference frame
+JointState actual                           # The actual position, velocity
+JointState desired                          # The desired position, velocity, acceleration

@@ -30,6 +30,8 @@ include_directories(include)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/FollowTransform.action"
   "action/FollowTwist.action"
+  "action/HoldConfiguration.action"
+  "action/HoldPose.action"
   "action/TrackCartesianTrajectory.action"
   "action/TrackJointTrajectory.action"
   "msg/CartesianState.msg"
