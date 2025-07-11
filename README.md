@@ -6,6 +6,7 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - Message types for defining both joint, and Cartesian trajectories for robot control.
 - Statistics messages for summarising robot performance.
 - Action definitions for real-time feedback control.
+- Nodes for manual control of a robot end-effector.
 
 #### :compass: Navigation
 - [Requirements](#clipboard-requirements)
@@ -14,7 +15,6 @@ This ROS2 package defines custom `.msg` and `.action` files for controlling seri
 - [Messages](#incoming_envelope-messages)
 - [Actions](#cartwheeling-actions)
 - [Nodes](#satellite-nodes)
-- [Release Notes](#package-release-notes---v100-april-2025)
 - [Contributing](#handshake-contributing)
 - [Citing this Repository](#bookmark_tabs-citing-this-repository)
 - [License](#scroll-license)
@@ -36,18 +36,9 @@ ros2_workspace/
 ├── log/
 └── src/
     └── interface_serial_link
-        ├── msg/
-        |   ├── CartesianState.msg
-        |   ├── CartesianTrajectoryPoint.msg
-        |   ├── JointCommand.msg
-        |   ├── JointState.msg
-        |   ├── JointTrajectoryPoint.msg
-        |   └── Statistics.msg
         ├── action/
-        |   ├── FollowTransform.action
-        |   ├── FollowTwist.action
-        |   ├── TrackCartesianTrajectory.action
-        |   └── TrackJointTrajectory.action
+        ├── msg/
+        ├── src/
         ├── CMakeLists.txt
         ├── package.xml
         └── README.md
@@ -65,7 +56,7 @@ git clone https://github.com/Woolfrey/interface_serial_link.git
 2. Navigate back to the root `<your_workspace>` and install:
 
 ```
-colcon build --packages-select --serial_link_interfaces
+colcon build --packages-select serial_link_interfaces
 ```
 
 3. Source the changes (if you haven't modified your `.bashrc` file):
@@ -173,7 +164,7 @@ ros2 run rviz2 rviz2
 you can add the `TF` and `Interactive Marker` messages and you will be able to move it around with your mouse:
 
 <p align="center">
-    <img src="doc/interactive_marker.png" width="600" align="center"/>
+    <img src="doc/follow_transform.gif" width="600" align="center"/>
 </p>
 
 You can set the parameters by launching with a YAML file:
@@ -202,7 +193,7 @@ ros2 run serial_link_interfaces joy_twist_mapper
 to launch the node.
 
 <p align="center">
-    <img src="doc/joy_twist_mapper.png" width="600" height="auto"/>
+    <img src="doc/follow_twist.gif" width="600" height="auto"/>
 </p>
 
 Again, you can load a YAML file when you run/launch the node:
@@ -250,28 +241,6 @@ Again, you can load a YAML file when you run/launch the node:
 
 Just change the `-1` to whatever axis or button index you want to control.
 
-[:top: Back to Top.](#jigsaw-serial-link-interfaces)
-
-## :package: Release Notes - v1.0.0 (April 2025)
-
-Messages:
-  - CartesianState
-  - CartesianTrajectoryPoint
-  - JointCommand
-  - JointState
-  - JointTrajectoryPoint
-  - Statistics
-
-Actions
-  - FollowTransform
-  - FollowTwist
-  - TrackCartesianTrajectory
-  - TrackJointTrajectory
-
-Nodes:
-  - interactive_marker
-  - joy_twist_mapper
- 
 [:top: Back to Top.](#jigsaw-serial-link-interfaces)
 
 ## :handshake: Contributing
