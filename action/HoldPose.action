@@ -1,7 +1,8 @@
 # Hold a given pose with the endpoint of a robot arm
 
 ################## GOAL ####################
-geometry_msgs/PoseStamped pose              # The pose to maintain
+bool use_current_pose false                 # If flagged, robot uses current pose instead of the one below
+geometry_msgs/Pose pose                     # The pose to maintain
 float64 position_tolerance 0.1              # Maximum permissable error on position error (m)
 float64 orientation_tolerance 0.5           # Maximum permissable error on orienation (rad)
 ---
