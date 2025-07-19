@@ -9,6 +9,7 @@ float64 orientation_tolerance 0.2           # Absolute permissable orientation e
 Statistics position_error                   # Norm of difference between desired and actual (m)
 Statistics orientation_error                # Angle from the Lie algebra of quaternion (rad)
 string message                              # Human-readable
+geometry_msgs/Pose final_pose               # Final pose of the trajectory, for follow-up hold action
 ---
 ################ FEEDBACK ##################
 std_msgs/Header header                      # Contains time stamp
