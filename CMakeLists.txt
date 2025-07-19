@@ -9,7 +9,6 @@ endif()
 #                                         DEPENDENCIES                                             #
 ####################################################################################################
 
-# ROS2 packages:
 find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(interactive_markers REQUIRED)
@@ -20,7 +19,7 @@ find_package(std_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(visualization_msgs REQUIRED)
 
-# Header files:
+# Header files
 include_directories(include)
 
 ####################################################################################################
@@ -34,46 +33,54 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/HoldPose.action"
   "action/TrackCartesianTrajectory.action"
   "action/TrackJointTrajectory.action"
-  "msg/CartesianState.msg"
   "msg/CartesianTrajectoryPoint.msg"
   "msg/JointCommand.msg"
-  "msg/JointState.msg"
   "msg/JointTrajectoryPoint.msg"
   "msg/Statistics.msg"
   DEPENDENCIES std_msgs geometry_msgs
 )
 
+# Export dependencies for runtime support of generated messages/actions
+ament_export_dependencies(rosidl_default_runtime)
+
 ####################################################################################################
 #                                             EXECUTABLES                                          #
 ####################################################################################################
 
-# Interactive marker
 add_executable(interactive_marker src/nodes/interactive_marker_node.cpp
                                   src/interactive_marker.cpp)
-                                         
-ament_target_dependencies(interactive_marker "ament_cmake"
-                                             "geometry_msgs"
-                                             "interactive_markers"
-                                             "rclcpp"
-                                             "tf2_ros"
-                                             "visualization_msgs")
 
-# Joy/Twist mapper
+ament_target_dependencies(interactive_marker
+  ament_cmake
+  geometry_msgs
+  interactive_markers
+  rclcpp
+  tf2_ros
+  visualization_msgs)
+
 add_executable(joy_twist_mapper src/nodes/joy_twist_mapper_node.cpp
                                 src/joy_twist_mapper.cpp)
-                                         
-ament_target_dependencies(joy_twist_mapper "ament_cmake"
-                                           "geometry_msgs"
-                                           "rclcpp"
-                                           "sensor_msgs")
- 
+
+ament_target_dependencies(joy_twist_mapper
+  ament_cmake
+  geometry_msgs
+  rclcpp
+  sensor_msgs)
+
 ####################################################################################################
 #                                       INSTALLATION INSTRUCTIONS                                  #
-####################################################################################################      
-                                       
-install(TARGETS interactive_marker
-                joy_twist_mapper
-        DESTINATION lib/${PROJECT_NAME}
+####################################################################################################
+
+install(TARGETS interactive_marker joy_twist_mapper
+  DESTINATION lib/${PROJECT_NAME}
 )
+
+# Install generated Python interface files (actions, messages) for Python usage
+install(DIRECTORY
+  "${CMAKE_CURRENT_BINARY_DIR}/rosidl_generator_py/serial_link_interfaces"
+  DESTINATION "lib/python3.10/site-packages"
+  USE_SOURCE_PERMISSIONS
+)
+
 
 ament_package()
