@@ -2,7 +2,7 @@
 
 float64 time                        # Point in time along the trajectory
 geometry_msgs/Pose  pose            # Desired position & orientation
-geometry_msgs/Twist   twist         # Desired linear & angular velocity
+geometry_msgs/Twist twist           # Desired linear & angular velocity
 geometry_msgs/Accel accel           # Desired linear & angular acceleration
 int32 reference_frame               # How the pose is defined
 int32 GLOBAL   = 0                  # Pose defined in base frame
