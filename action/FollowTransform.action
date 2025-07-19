@@ -7,12 +7,12 @@ float64 orientation_tolerance 0.5           # Maximum permissable error on orien
 float64 timeout 0.5                         # Time to wait for transform to appear
 ---
 ################ RESULT ####################
-Statistics position_error                   # Contains information on mean, variance, min, max
-Statistics orientation_error                # Contains information on mean, variance, min, max
-string message                              # Information for the client
+Statistics position_error                   # Norm of difference between desired and actual (m)
+Statistics orientation_error                # Angle from the Lie algebra of quaternion (rad)
+string message                              # Human-readable
 ---
 ################ FEEDBACK ##################
-std_msgs/Header header                      # Time of publication, reference frame
-CartesianState actual                       # Computed value from the forward kinematics
-CartesianState desired                      # Value from the trajectory
-float64 manipulability                      # Proximity to a singularity
+std_msgs/Header header                      # Contains time stamp
+float64 position_error                      # Norm of difference between desired and actual (m)
+float64 orientation_error                   # Angle from the Lie algebra of quaternion (rad)
+float64 manipulability                      # Proximity to a singularity (0 = singular)

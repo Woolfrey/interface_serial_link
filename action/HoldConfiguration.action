@@ -5,10 +5,11 @@ float64[] configuration                     # The desired joint positions to mai
 float64[] tolerances                        # Maximum permissable error for each joint
 ---
 ################ RESULT ####################
-Statistics[] position_error                 # Contains information on mean, variance, min, max
-string message                              # Information for the client
+string[] joint_names                        # Unique identifier for each joint
+Statistics[] position_error                 # Difference between desired and actual position
+string message                              # Human-readable
 ---
 ################ FEEDBACK ##################
-std_msgs/Header header                      # Time of publication, reference frame
-JointState actual                           # The actual position, velocity
-JointState desired                          # The desired position, velocity, acceleration
+std_msgs/Header header                      # Time stamp of publication
+string[] joint_names                        # Unique identifier for each joint
+float64[] position_error                    # Difference between desired and actual position

@@ -6,10 +6,11 @@ float64[] tolerances                        # Maximum permissable tracking error
 int32 polynomial_order 3                    # Degrees of freedom in the interpolating polynomial
 ---
 ################ RESULT ####################
-Statistics[] position_error                 # Contains information on performance
-string message                              # Information for the client
+string[] joint_names                        # Unique identifier for each joint
+Statistics[] position_error                 # Difference between desired and actual position
+string message                              # Human-readable
 ---
 ################ FEEDBACK ##################
-std_msgs/Header header                      # Contains timestamp
-JointState actual                           # Actual state measured from joint sensors
-JointState desired                          # Desired state from trajectory generator
+std_msgs/Header header                      # Time stamp of publication
+string[] joint_names                        # Unique identifier for each joint
+float64[] position_error                    # Difference between desired and actual position

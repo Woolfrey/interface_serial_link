@@ -13,6 +13,6 @@ string message                              # Information for the client
 ---
 ################ FEEDBACK ##################
 std_msgs/Header header                      # Time of publication, reference frame
-geometry_msgs/TwistStamped actual           # Calculated from the forward kinematics
-geometry_msgs/TwistStamped desired          # Taken from the published topic
+float64 linear_error                        # Norm of desired - actual
+float64 angular_error                       # Angle from the Lie algebra
 float64 manipulability                      # Proximity to a singularity (0 == singular)

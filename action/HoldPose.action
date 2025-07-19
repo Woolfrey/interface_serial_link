@@ -6,12 +6,12 @@ float64 position_tolerance 0.1              # Maximum permissable error on posit
 float64 orientation_tolerance 0.5           # Maximum permissable error on orienation (rad)
 ---
 ################ RESULT ####################
-Statistics position_error                   # Contains information on mean, variance, min, max
-Statistics orientation_error                # Contains information on mean, variance, min, max
-string message                              # Information for the client
+Statistics position_error                   # Norm of difference between desired and actual (m)
+Statistics orientation_error                # Angle from the Lie algebra of quaternion (rad)
+string message                              # Human-readable
 ---
 ################ FEEDBACK ##################
-std_msgs/Header header                      # Time of publication, reference frame
-CartesianState actual                       # Actual pose, velocity computed from forward kinematics
-CartesianState desired                      # Desired pose, velocity, acceleration
-float64 manipulability                      # Proximity to a singularity
+std_msgs/Header header                      # Contains time stamp
+float64 position_error                      # Norm of difference between desired and actual (m)
+float64 orientation_error                   # Angle from the Lie algebra of quaternion (rad)
+float64 manipulability                      # Proximity to a singularity (0 = singular)
