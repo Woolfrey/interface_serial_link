@@ -1,6 +1,10 @@
 # :jigsaw: Serial Link Interfaces
 
-This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms. The purpose is to establish standardised communication protocols between an action server (which manages the robot control) and an action client (which handles the high-level task planning). It was created to be used alongside the [serial link action server](https://github.com/Woolfrey/server_serial_link) and [serial link action client](https://github.com/Woolfrey/client_serial_link) ROS2 packages. These interfaces have been deliberately abstracted for seemless integration with other potential action servers and action clients.
+This ROS2 package defines custom `.msg` and `.action` files for controlling serial link robot arms.
+
+The purpose is to establish standardised communication protocols between an action server (which manages the robot control) and an action client (which handles the high-level task planning).
+
+It was created to be used alongside the [serial link action server](https://github.com/Woolfrey/server_serial_link) and [serial link action client](https://github.com/Woolfrey/client_serial_link) ROS2 packages.
 
 #### :sparkles: Features:
 - Message types for defining both joint, and Cartesian trajectories for robot control.
@@ -35,13 +39,7 @@ ros2_workspace/
 ├── install/
 ├── log/
 └── src/
-    └── interface_serial_link
-        ├── action/
-        ├── msg/
-        ├── src/
-        ├── CMakeLists.txt
-        ├── package.xml
-        └── README.md
+    └── interface_serial_link/
 ```
 
 1. In your ROS2 workspace `<your_workspace>/src/` directory, clone the package:
@@ -125,10 +123,8 @@ Below are lists of `msg` and `action` files and their intended usage.
 
 | Message | Purpose |
 |---------|---------|
-| CartesianState | The current pose, velocity, and acceleration for the endpoint of a robot arm. |
 | CartesianTrajectoryPoint | A series of poses & times from which a CartesianTrajectory is constructed. |
 | JointCommand | An array of control inputs for the joints on a robot; position, velocity, or torque. |
-| JointState | The position, velocity, and acceleration for the joints of a robot (either desired, or actual). |
 | JointTrajectoryPoint | A series of joint states & times from which a joint trajectory is constructed. |
 | Statistics | Summarises the control performance of an action with mean, min, max, and variance. | 
 
@@ -140,6 +136,8 @@ Below are lists of `msg` and `action` files and their intended usage.
 |---------|---------|
 | FollowTransform | Tells the action server to listen to a `tf2::Transform` to make the endpoint of a robot arm follow it in real-time. |
 | FollowTwist | Tells the action server the name of a topic for a `geometry_msgs::msg::TwistStamped` to control the endpoint of a robot in real-time. |
+| HoldConfiguration | Hold a given (or current) joint configuration indefinitely. |
+| HoldPose | Hold a given endpoint pose (or current pose) indefinitely. |
 | TrackCartesianTrajectory | Given an array of `CartesianTrajectoryPoint`, create a Cartesian trajectory and perform feedback control to follow it with the endpoint of a robot arm. |
 | TrackJointTrajectory | Given an array of `JointTrajectoryPoint`, create a (joint) trajectory and perform feedback control to follow it. |
 
